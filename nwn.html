@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A simulation study of how a nanowire network transforms MNIST handwritten-digit inputs.">
+  <title>Neuromorphic Nanowire Networks | Zach Zhang</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top"><div class="wrap bar">
+    <a class="brand" href="index.html"><img src="assets/mark.svg" width="35" height="35" alt=""> Zach Zhang</a>
+    <nav aria-label="Main navigation"><a href="index.html#work">Projects</a></nav>
+  </div></header>
+
+      <main id="main" class="wrap detail nwn">
+        <a class="back" href="index.html#work"><span aria-hidden="true">←</span> Selected projects</a>
+        <section class="detail-hero"><div><p class="eyebrow">01 / Research</p><h1>Neuromorphic Nanowire Networks</h1><p class="lead">A simulation study of how a nanowire network transforms MNIST handwritten-digit inputs.</p>
+          <div class="meta"><span>University of Sydney SSP (Special Study Program)</span><span>Physical reservoir computing · MNIST</span></div></div>
+          <figure><img src="assets/nwn.svg" width="640" height="360" alt="Illustration of an interconnected network"><figcaption>Concept illustration</figcaption></figure>
+        </section>
+        <section class="detail-section"><p class="eyebrow">01 / Question</p><div><h2>What the project asks</h2><p>Can the dynamics of a nanowire network produce features that separate handwritten-digit classes? I compared patterns in the inputs with patterns in the simulated readouts to study the feature stage of physical reservoir computing.</p></div></section>
+        <section class="detail-section"><p class="eyebrow">02 / Approach</p><div><h2>How the team approached it</h2><p>I encoded each 28 × 28 MNIST image as 784 sequential input voltages. The simulator includes a PyTorch implementation and models a network with 16 electrodes. The analysis uses the voltage traces from four readout electrodes.</p><figure class="research-figure">
+        <img src="assets/reservoir-workflow.png" width="1600" height="900" loading="lazy" alt="SSP presentation diagram connecting encoded images, nanowire-network dynamics and readout features">
+        <figcaption>Diagram from the SSP presentation. The study focuses on the readout features.</figcaption>
+      </figure>
+      <details class="logbook-preview">
+        <summary>View the original handwritten workflow</summary>
+        <figure class="research-figure">
+          <img src="assets/logbook-workflow.jpg" width="1075" height="1302" loading="lazy" alt="Handwritten workflow from MNIST voltage encoding to four readouts, feature extraction and statistical analysis">
+          <figcaption>Conceptual workflow from my SSP research logbook, page 9.</figcaption>
+        </figure>
+      </details>
+      <h3 class="research-code-heading">Checking the simulator response</h3>
+      <p>Before comparing digits, I varied the input voltage range and time step. I used a sine wave to inspect how the four readouts responded to a predictable input. At a fixed upper voltage, a higher baseline drives dark pixels more strongly while reducing bright–dark contrast. The notes treat a possible intermediate operating range as a hypothesis.</p>
+      <h3 class="research-code-heading">From 15 to 80 images</h3>
+      <p>The pilot used five examples each of digits 1, 2 and 3. The PCA view suggested a distinct region for digit 1 and overlap between digits 2 and 3. The expanded study used 20 examples each of digits 1, 2, 3 and 4, with a fixed setup and a reset of the simulated state between images.</p>
+      <h3 class="research-code-heading">Features and statistical analysis</h3>
+      <p>For each of the four readouts, the L2 norm of the difference between the input and readout traces gives a Euclidean distance. I compared class means, variability, within-class spread and distances between class centroids. PCA provides a two-dimensional view. The silhouette scores come from the full standardised feature spaces.</p>
+      <h3 class="research-code-heading">Code from the research notebook</h3>
+      <p>This pilot cell reshapes one 784-sample input and its readout traces to the image grid, then calculates one L2 distance per channel.</p>
+      <pre class="research-code"><code>input_img = signals[0, :784].reshape(28, 28)
+
+for i in range(4):
+    output_img = readout_voltages[i, :784].reshape(28, 28)
+    l2 = np.linalg.norm(input_img - output_img)
+    print(f&quot;Electrode {i}: L2 norm = {l2:.4f}&quot;)</code></pre>
+      <p>The code guide includes the original sampling, PCA and statistical analysis cells. The runnable walkthrough also covers signal preparation, checkpoint recovery and plots using synthetic readouts.</p>
+      <div class="intro-links">
+        <a class="button secondary" href="https://github.com/zchenrui712-cell/nwn-ssp/blob/main/docs/notebook-code.md" target="_blank" rel="noopener noreferrer">Notebook code and screenshot index <span aria-hidden="true">↗</span></a>
+        <a class="button secondary" href="https://github.com/zchenrui712-cell/nwn-ssp/blob/main/analysis/demo.py" target="_blank" rel="noopener noreferrer">Runnable Python walkthrough <span aria-hidden="true">↗</span></a>
+      </div></div></section>
+        <section class="detail-section"><p class="eyebrow">03 / Contribution</p><div><h2>My role</h2><p>I explored input settings, used controlled sine-wave inputs to inspect the four readouts, and analysed digit-class structure in the resulting features. I documented this progression in my logbook and presented the pilot-to-expanded comparison and its limits. Earlier topology experiments by a colleague provided context for this work.</p></div></section>
+        <section class="detail-section"><p class="eyebrow">04 / Interpretation</p><div><h2>How to read the work</h2><p>The pilot gave a higher silhouette score for readout features than for raw inputs. In the 80-image study, both showed weak separation and the readout representation scored lower. Digits 2 and 3 had the closest class centroids, while digit 1 had less within-class spread than digit 3. The pilot and expanded sets used different images and digit classes.</p><h3 class="research-code-heading">What one distance per trace leaves out</h3>
+        <p>Each L2 value summarises a whole trace, which may discard useful timing information. A next step would be to extract richer temporal features and evaluate a classifier on held-out images.</p>
+        <h3 class="research-code-heading">Where Welch’s t-test fits</h3>
+        <p>Welch’s t-test is a possible follow-up for comparing a prespecified feature between two independent classes with potentially unequal variances. The four channels from the same image are related measurements. The reviewed logbook and notebooks record no Welch test result.</p></div></section>
+        <section class="detail-section"><p class="eyebrow">05 / Materials</p><div><h2>Project materials</h2><p>This overview describes the research question and the study at a high level. The research-group implementation and experimental materials are held by the group.</p><div class="intro-links"><a class="button secondary" href="https://github.com/zchenrui712-cell/nwn-ssp" target="_blank" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></div></section>
+        <a class="next" href="robot.html"><div><span class="eyebrow">Next project</span><strong>Autonomous Maze Robot</strong></div><span class="arrow" aria-hidden="true">↗</span></a>
+      </main>
+  <footer class="foot"><div class="wrap bar"><span>Zach Zhang <span class="quiet">/</span> Engineering portfolio</span><span class="foot-status">November 2026</span></div></footer>
+</body>
+</html>
