@@ -46,15 +46,21 @@ nav a:hover, nav a[aria-current] { text-decoration: underline; text-underline-of
 .nwn { --accent: #225641; }
 .robot { --accent: #784020; }
 .skytrace { --accent: #2e577d; }
-.card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; background: #fffefa; transition: transform .17s ease, box-shadow .17s ease; }
-.card:hover { transform: translateY(-4px); box-shadow: 0 9px 23px #253a2715; }
+.card { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--line); border-radius: 10px; background: #fffefa; transition: transform .17s ease, box-shadow .17s ease; }
+.card:hover, .card:focus-within { transform: translateY(-4px); box-shadow: 0 9px 23px #253a2715; }
+.card-overview { display: flex; flex: 1; flex-direction: column; text-decoration: none; border-radius: 9px 9px 0 0; }
+.card-overview:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 .card-art { position: relative; }
 .card-art img { width: 100%; border-radius: 9px 9px 0 0; }
 .card-index { position: absolute; top: 13px; left: 13px; border-radius: 4px; padding: 4px 7px; background: #fffefa; color: var(--accent); font: 650 .71rem/1.25 var(--mono); }
 .card-copy { display: flex; flex-direction: column; flex: 1; padding: 19px; }
 .card-copy h3 { font-size: clamp(1.5rem, 2.55vw, 2.03rem); letter-spacing: -.045em; margin-block: 8px 9px; }
 .card-copy > p:not(.eyebrow) { color: var(--muted); font-size: .91rem; line-height: 1.55; margin-bottom: 17px; }
-.card-bottom { border-top: 1px solid var(--line); padding-top: 12px; margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--accent); font-size: .75rem; font-weight: 650; }
+.card-tag { margin-top: auto; color: var(--accent); font-size: .75rem; font-weight: 650; }
+.card-actions { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; justify-content: space-between; margin-inline: 19px; padding-block: 8px; border-top: 1px solid var(--line); color: var(--accent); font-size: .76rem; font-weight: 650; }
+.card-actions a { display: inline-flex; min-height: 38px; align-items: center; gap: 5px; text-decoration: none; }
+.card-actions a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.card-actions .card-demo { padding-inline: 9px; border: 1px solid #bccbd9; border-radius: 5px; background: #eef5fa; }
 .arrow { display: grid; flex: 0 0 auto; place-items: center; width: 29px; height: 29px; border: 1px solid currentColor; border-radius: 50%; font: 1rem/1 var(--sans); }
 .foot { border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
 .quiet { margin-inline: 4px; }
@@ -69,6 +75,7 @@ nav a:hover, nav a[aria-current] { text-decoration: underline; text-underline-of
 .meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 19px; }
 .meta span { border-radius: 5px; padding: 4px 9px; border: 1px solid var(--line); font-size: .75rem; color: var(--accent); }
 .detail-section { display: grid; grid-template-columns: minmax(140px, .38fr) 1fr; gap: 24px; border-top: 1px solid var(--line); padding-block: 27px; }
+.detail-section > div { min-width: 0; }
 .detail-section > .eyebrow { margin-top: 7px; }
 .detail-section h2, .cv h2 { font-size: clamp(1.55rem, 3.25vw, 2.35rem); letter-spacing: -.035em; margin-bottom: 10px; }
 .detail-section div > p, .detail-section dd, .cv section p { color: var(--muted); max-width: 66ch; }
@@ -108,6 +115,7 @@ nav a:hover, nav a[aria-current] { text-decoration: underline; text-underline-of
   .wrap { width: min(1136px, 100% - 54px); }
   .intro { grid-template-columns: 1fr minmax(170px, 29%); gap: 20px; }
   .card-copy { padding: 14px; }
+  .card-actions { margin-inline: 14px; }
   .detail-hero { gap: 24px; }
 }
 @media (max-width: 660px) {

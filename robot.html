@@ -12,25 +12,27 @@
   <a class="skip" href="#main">Skip to content</a>
   <header class="top"><div class="wrap bar">
     <a class="brand" href="index.html"><img src="assets/mark.svg" width="35" height="35" alt=""> Zach Zhang</a>
-    <nav aria-label="Main navigation"><a href="index.html#work">Projects</a></nav>
+    <nav aria-label="Main navigation"><a href="index.html#work">Projects</a><a href="https://github.com/zchenrui712-cell">GitHub</a></nav>
   </div></header>
 
       <main id="main" class="wrap detail robot">
         <a class="back" href="index.html#work"><span aria-hidden="true">←</span> Selected projects</a>
         <section class="detail-hero"><div><p class="eyebrow">02 / Embedded systems</p><h1>Autonomous Maze Robot</h1><p class="lead">An Arduino robot that navigates a physical maze using infrared sensor feedback.</p>
-          <div class="meta"><span>University of Sydney · ELEC1601</span><span>Arduino · IR sensing · Servo control</span></div></div>
+          <div class="meta"><span>University of Sydney · ELEC1601</span><span>Arduino · IR sensing · Servo control</span></div><div class="intro-links">
+          <a class="button primary" href="https://github.com/zchenrui712-cell/elec1601-maze-robot#arduino-sketches">View Arduino sketches <span aria-hidden="true">↗</span></a>
+        </div></div>
           <figure><img src="assets/robot.svg" width="640" height="360" alt="Illustration of a robot in a maze"><figcaption>Concept illustration</figcaption></figure>
         </section>
         <section class="detail-section"><p class="eyebrow">01 / Question</p><div><h2>What the project asks</h2><p>A robot operating in a physical maze has to make movement decisions from incomplete sensor readings. The project combines sensing and motor control so behaviour can be tested on the robot as well as inspected in the program.</p></div></section>
-        <section class="detail-section"><p class="eyebrow">02 / Approach</p><div><h2>How the team approached it</h2><p>The Arduino interprets IR sensor readings for nearby walls and controls the servos. A state variable allows a navigation decision to depend on an earlier event. Timer logic uses elapsed time as a separate input to a decision.</p><h3 class="research-code-heading">Course requirements</h3>
+        <section class="detail-section"><p class="eyebrow">02 / Approach</p><div><h2>How it works</h2><p>The Arduino interprets IR sensor readings for nearby walls and controls the servos. A state variable allows a navigation decision to depend on an earlier event. Timer logic uses elapsed time as a separate input to a decision.</p><h3 class="research-code-heading">Course requirements</h3>
         <p>The ELEC1601 brief defines these three sets of assessment criteria.</p>
         <dl class="stages">
           <div><dt>Essential</dt><dd>Use left, front and right IR readings to recognise the starting scenario and show its LED code. Stay still in an unknown case. In the defined cases, drive 5 cm along a corridor, make 90° turns or a 180° U-turn, and recover from starts near or angled toward a wall. The corridor manoeuvres specify a 3 cm centreline tolerance.</dd></div>
           <div><dt>Extension Part 1</dt><dd>Progress from stopping at the first front wall after a challenging start, to making one turn, to navigating to a dead end, and finally to turning around and returning to the start. The layout may be mirrored.</dd></div>
           <div><dt>Extension Part 2</dt><dd>Navigate S-turns, U-turns and T-junctions in a variable maze. Escape a short dead end without wall contact. Finish facing forward at a dead end reached after exactly two wall segments of straight travel.</dd></div>
         </dl></div></section>
-        <section class="detail-section"><p class="eyebrow">03 / Contribution</p><div><h2>My role</h2><p>I helped plan the approach, contributed to the robot’s code, and debugged the project with my teammates.</p></div></section>
-        <section class="detail-section"><p class="eyebrow">04 / Interpretation</p><div><h2>How to read the work</h2><p>Serial output records sensor scores and navigation decisions. In Extension Part 2, elapsed time serves as a proxy for corridor length, so the stop threshold needs calibration on the robot.</p></div></section>
+        <section class="detail-section"><p class="eyebrow">03 / Contribution</p><div><h2>My contribution</h2><p>I helped plan the approach, contributed to the robot’s code, and debugged the project with my teammates.</p></div></section>
+        <section class="detail-section"><p class="eyebrow">04 / Interpretation</p><div><h2>What the project shows</h2><p>Serial output records sensor scores and navigation decisions. In Extension Part 2, elapsed time serves as a proxy for corridor length, so the stop threshold needs calibration on the robot.</p></div></section>
         <section class="detail-section"><p class="eyebrow">05 / Materials</p><div><h2>Project materials</h2><p>The GitHub repository contains the coursework requirements and Arduino sketches for non-commercial review.</p><div class="intro-links"><a class="button primary" href="https://github.com/zchenrui712-cell/elec1601-maze-robot#course-requirements" target="_blank" rel="noopener noreferrer">Course requirements and Arduino sketches <span aria-hidden="true">↗</span></a><a class="button secondary" href="https://github.com/zchenrui712-cell/elec1601-maze-robot" target="_blank" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></div></section>
         <a class="next" href="skytrace.html"><div><span class="eyebrow">Next project</span><strong>SkyTrace Live</strong></div><span class="arrow" aria-hidden="true">↗</span></a>
       </main>

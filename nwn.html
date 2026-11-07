@@ -12,17 +12,19 @@
   <a class="skip" href="#main">Skip to content</a>
   <header class="top"><div class="wrap bar">
     <a class="brand" href="index.html"><img src="assets/mark.svg" width="35" height="35" alt=""> Zach Zhang</a>
-    <nav aria-label="Main navigation"><a href="index.html#work">Projects</a></nav>
+    <nav aria-label="Main navigation"><a href="index.html#work">Projects</a><a href="https://github.com/zchenrui712-cell">GitHub</a></nav>
   </div></header>
 
       <main id="main" class="wrap detail nwn">
         <a class="back" href="index.html#work"><span aria-hidden="true">←</span> Selected projects</a>
         <section class="detail-hero"><div><p class="eyebrow">01 / Research</p><h1>Neuromorphic Nanowire Networks</h1><p class="lead">A simulation study of how a nanowire network transforms MNIST handwritten-digit inputs.</p>
-          <div class="meta"><span>University of Sydney SSP (Special Study Program)</span><span>Physical reservoir computing · MNIST</span></div></div>
+          <div class="meta"><span>University of Sydney SSP (Special Study Program)</span><span>Physical reservoir computing · MNIST</span></div><div class="intro-links">
+          <a class="button primary" href="https://github.com/zchenrui712-cell/nwn-ssp/blob/main/docs/notebook-code.md">View notebook code <span aria-hidden="true">↗</span></a>
+        </div></div>
           <figure><img src="assets/nwn.svg" width="640" height="360" alt="Illustration of an interconnected network"><figcaption>Concept illustration</figcaption></figure>
         </section>
         <section class="detail-section"><p class="eyebrow">01 / Question</p><div><h2>What the project asks</h2><p>Can the dynamics of a nanowire network produce features that separate handwritten-digit classes? I compared patterns in the inputs with patterns in the simulated readouts to study the feature stage of physical reservoir computing.</p></div></section>
-        <section class="detail-section"><p class="eyebrow">02 / Approach</p><div><h2>How the team approached it</h2><p>I encoded each 28 × 28 MNIST image as 784 sequential input voltages. The simulator includes a PyTorch implementation and models a network with 16 electrodes. The analysis uses the voltage traces from four readout electrodes.</p><figure class="research-figure">
+        <section class="detail-section"><p class="eyebrow">02 / Approach</p><div><h2>How it works</h2><p>I encoded each 28 × 28 MNIST image as 784 sequential input voltages. The simulator includes a PyTorch implementation and models a network with 16 electrodes. The analysis uses the voltage traces from four readout electrodes.</p><figure class="research-figure">
         <img src="assets/reservoir-workflow.png" width="1600" height="900" loading="lazy" alt="SSP presentation diagram connecting encoded images, nanowire-network dynamics and readout features">
         <figcaption>Diagram from the SSP presentation. The study focuses on the readout features.</figcaption>
       </figure>
@@ -52,8 +54,8 @@ for i in range(4):
         <a class="button secondary" href="https://github.com/zchenrui712-cell/nwn-ssp/blob/main/docs/notebook-code.md" target="_blank" rel="noopener noreferrer">Notebook code and screenshot index <span aria-hidden="true">↗</span></a>
         <a class="button secondary" href="https://github.com/zchenrui712-cell/nwn-ssp/blob/main/analysis/demo.py" target="_blank" rel="noopener noreferrer">Runnable Python walkthrough <span aria-hidden="true">↗</span></a>
       </div></div></section>
-        <section class="detail-section"><p class="eyebrow">03 / Contribution</p><div><h2>My role</h2><p>I explored input settings, used controlled sine-wave inputs to inspect the four readouts, and analysed digit-class structure in the resulting features. I documented this progression in my logbook and presented the pilot-to-expanded comparison and its limits. Earlier topology experiments by a colleague provided context for this work.</p></div></section>
-        <section class="detail-section"><p class="eyebrow">04 / Interpretation</p><div><h2>How to read the work</h2><p>The pilot gave a higher silhouette score for readout features than for raw inputs. In the 80-image study, both showed weak separation and the readout representation scored lower. Digits 2 and 3 had the closest class centroids, while digit 1 had less within-class spread than digit 3. The pilot and expanded sets used different images and digit classes.</p><h3 class="research-code-heading">What one distance per trace leaves out</h3>
+        <section class="detail-section"><p class="eyebrow">03 / Contribution</p><div><h2>My contribution</h2><p>I explored input settings, used controlled sine-wave inputs to inspect the four readouts, and analysed digit-class structure in the resulting features. I documented this progression in my logbook and presented the pilot-to-expanded comparison and its limits. Earlier topology experiments by a colleague provided context for this work.</p></div></section>
+        <section class="detail-section"><p class="eyebrow">04 / Interpretation</p><div><h2>What the project shows</h2><p>The pilot gave a higher silhouette score for readout features than for raw inputs. In the 80-image study, both showed weak separation and the readout representation scored lower. Digits 2 and 3 had the closest class centroids, while digit 1 had less within-class spread than digit 3. The pilot and expanded sets used different images and digit classes.</p><h3 class="research-code-heading">What one distance per trace leaves out</h3>
         <p>Each L2 value summarises a whole trace, which may discard useful timing information. A next step would be to extract richer temporal features and evaluate a classifier on held-out images.</p>
         <h3 class="research-code-heading">Where Welch’s t-test fits</h3>
         <p>Welch’s t-test is a possible follow-up for comparing a prespecified feature between two independent classes with potentially unequal variances. The four channels from the same image are related measurements. The reviewed logbook and notebooks record no Welch test result.</p></div></section>
