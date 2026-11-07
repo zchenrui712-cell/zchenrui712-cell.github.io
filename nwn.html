@@ -20,6 +20,7 @@
         <section class="detail-hero"><div><p class="eyebrow">01 / Research</p><h1>Neuromorphic Nanowire Networks</h1><p class="lead">A simulation study of how a nanowire network transforms MNIST handwritten-digit inputs.</p>
           <div class="meta"><span>University of Sydney SSP (Special Study Program)</span><span>Physical reservoir computing · MNIST</span></div><div class="intro-links">
           <a class="button primary" href="https://github.com/zchenrui712-cell/nwn-ssp/blob/main/docs/notebook-code.md">View notebook code <span aria-hidden="true">↗</span></a>
+          <a class="button secondary" href="#results">View results <span aria-hidden="true">↓</span></a>
         </div></div>
           <figure><img src="assets/nwn.svg" width="640" height="360" alt="Illustration of an interconnected network"><figcaption>Concept illustration</figcaption></figure>
         </section>
@@ -39,6 +40,10 @@
       <p>Before comparing digits, I varied the input voltage range and time step. I used a sine wave to inspect how the four readouts responded to a predictable input. At a fixed upper voltage, a higher baseline drives dark pixels more strongly while reducing bright–dark contrast. The notes treat a possible intermediate operating range as a hypothesis.</p>
       <h3 class="research-code-heading">From 15 to 80 images</h3>
       <p>The pilot used five examples each of digits 1, 2 and 3. The PCA view suggested a distinct region for digit 1 and overlap between digits 2 and 3. The expanded study used 20 examples each of digits 1, 2, 3 and 4, with a fixed setup and a reset of the simulated state between images.</p>
+      <figure class="research-figure">
+        <a href="assets/research/mnist-pilot-inputs.png"><img src="assets/research/mnist-pilot-inputs.png" width="969" height="591" loading="lazy" alt="Fifteen MNIST inputs arranged in rows of five handwritten ones, twos and threes"></a>
+        <figcaption>The 15 MNIST inputs used in the pilot. Each 28 × 28 pixel image is enlarged for inspection.</figcaption>
+      </figure>
       <h3 class="research-code-heading">Features and statistical analysis</h3>
       <p>For each of the four readouts, the L2 norm of the difference between the input and readout traces gives a Euclidean distance. I compared class means, variability, within-class spread and distances between class centroids. PCA provides a two-dimensional view. The silhouette scores come from the full standardised feature spaces.</p>
       <h3 class="research-code-heading">Code from the research notebook</h3>
@@ -55,11 +60,30 @@ for i in range(4):
         <a class="button secondary" href="https://github.com/zchenrui712-cell/nwn-ssp/blob/main/analysis/demo.py" target="_blank" rel="noopener noreferrer">Runnable Python walkthrough <span aria-hidden="true">↗</span></a>
       </div></div></section>
         <section class="detail-section"><p class="eyebrow">03 / Contribution</p><div><h2>My contribution</h2><p>I explored input settings, used controlled sine-wave inputs to inspect the four readouts, and analysed digit-class structure in the resulting features. I documented this progression in my logbook and presented the pilot-to-expanded comparison and its limits. Earlier topology experiments by a colleague provided context for this work.</p></div></section>
-        <section class="detail-section"><p class="eyebrow">04 / Interpretation</p><div><h2>What the project shows</h2><p>The pilot gave a higher silhouette score for readout features than for raw inputs. In the 80-image study, both showed weak separation and the readout representation scored lower. Digits 2 and 3 had the closest class centroids, while digit 1 had less within-class spread than digit 3. The pilot and expanded sets used different images and digit classes.</p><h3 class="research-code-heading">What one distance per trace leaves out</h3>
+        <section id="results" class="detail-section"><p class="eyebrow">04 / Interpretation</p><div><h2>What the project shows</h2><p>The pilot gave a higher silhouette score for readout features than for raw inputs. In the 80-image study, both showed weak separation and the readout representation scored lower. The pilot and expanded sets used different images and digit classes.</p>
+        <figure class="research-figure">
+          <a href="assets/research/silhouette-comparison.png"><img src="assets/research/silhouette-comparison.png" width="2100" height="1500" loading="lazy" alt="Silhouette scores of 0.0195 for raw MNIST and −0.0367 for the four nanowire-network L2 features"></a>
+          <figcaption>Silhouette scores on the same 80 images after standardising each representation. Both scores were close to zero, and the L2 features scored lower.</figcaption>
+        </figure>
+        <figure class="research-figure">
+          <a href="assets/research/electrode-mean-sd.png"><img src="assets/research/electrode-mean-sd.png" width="2700" height="1500" loading="lazy" alt="Mean L2 distance and standard deviation for digits 1 through 4 across four readout channels"></a>
+          <figcaption>Mean input-to-readout L2 distance for each digit across the four channels. Error bars show one standard deviation over the 20 images in each class.</figcaption>
+        </figure>
+        <div class="research-figures">
+          <figure class="research-figure">
+            <a href="assets/research/centroid-distances.png"><img src="assets/research/centroid-distances.png" width="1800" height="1500" loading="lazy" alt="Class-centroid distance heatmap with digits 2 and 3 the closest pair"></a>
+            <figcaption>Euclidean distances between the class centroids in four-feature space. Digits 2 and 3 had the closest centroids.</figcaption>
+          </figure>
+          <figure class="research-figure">
+            <a href="assets/research/within-class-spread.png"><img src="assets/research/within-class-spread.png" width="2400" height="1500" loading="lazy" alt="Within-class RMS spread by digit, with digit 3 showing the largest spread"></a>
+            <figcaption>Within-class root-mean-square distance from the centroid. Digit 3 showed the greatest spread.</figcaption>
+          </figure>
+        </div>
+        <h3 class="research-code-heading">What one distance per trace leaves out</h3>
         <p>Each L2 value summarises a whole trace, which may discard useful timing information. A next step would be to extract richer temporal features and evaluate a classifier on held-out images.</p>
         <h3 class="research-code-heading">Where Welch’s t-test fits</h3>
         <p>Welch’s t-test is a possible follow-up for comparing a prespecified feature between two independent classes with potentially unequal variances. The four channels from the same image are related measurements. The reviewed logbook and notebooks record no Welch test result.</p></div></section>
-        <section class="detail-section"><p class="eyebrow">05 / Materials</p><div><h2>Project materials</h2><p>This overview describes the research question and the study at a high level. The research-group implementation and experimental materials are held by the group.</p><div class="intro-links"><a class="button secondary" href="https://github.com/zchenrui712-cell/nwn-ssp" target="_blank" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></div></section>
+        <section class="detail-section"><p class="eyebrow">05 / Materials</p><div><h2>Project materials</h2><p>The figures show MNIST inputs and aggregate statistics from my analysis of simulated readouts. The research group retains the core simulator, configuration files and raw outputs.</p><div class="intro-links"><a class="button secondary" href="https://github.com/zchenrui712-cell/nwn-ssp" target="_blank" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></div></section>
         <a class="next" href="robot.html"><div><span class="eyebrow">Next project</span><strong>Autonomous Maze Robot</strong></div><span class="arrow" aria-hidden="true">↗</span></a>
       </main>
   <footer class="foot"><div class="wrap bar"><span>Zach Zhang <span class="quiet">/</span> Engineering portfolio</span><span class="foot-status">November 2026</span></div></footer>

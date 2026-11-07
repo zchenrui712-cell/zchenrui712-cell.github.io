@@ -82,6 +82,7 @@ nav a:hover, nav a[aria-current] { text-decoration: underline; text-underline-of
 .research-figure { margin-top: 20px; }
 .research-figure img { border: 1px solid var(--line); border-radius: 8px; }
 .research-figure figcaption { margin-top: 7px; color: var(--muted); font-size: .85rem; }
+.research-figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 0 16px; }
 .logbook-preview { margin-top: 15px; }
 .logbook-preview summary { color: var(--accent); cursor: pointer; font-weight: 650; }
 .logbook-preview img { width: min(100%, 440px); }
