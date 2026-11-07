@@ -19,10 +19,13 @@
         <a class="back" href="index.html#work"><span aria-hidden="true">←</span> Selected projects</a>
         <section class="detail-hero"><div><p class="eyebrow">01 / Research</p><h1>Neuromorphic Nanowire Networks</h1><p class="lead">A simulation study of how a nanowire network transforms MNIST handwritten-digit inputs.</p>
           <div class="meta"><span>University of Sydney SSP (Special Study Program)</span><span>Physical reservoir computing · MNIST</span></div><div class="intro-links">
-          <a class="button primary" href="https://github.com/zchenrui712-cell/nwn-ssp/blob/main/docs/notebook-code.md">View notebook code <span aria-hidden="true">↗</span></a>
-          <a class="button secondary" href="#results">View results <span aria-hidden="true">↓</span></a>
+          <a class="button primary" href="#results">View results <span aria-hidden="true">↓</span></a>
+          <a class="button secondary" href="https://github.com/zchenrui712-cell/nwn-ssp/blob/main/docs/notebook-code.md">View notebook code <span aria-hidden="true">↗</span></a>
         </div></div>
-          <figure><img src="assets/nwn.svg" width="640" height="360" alt="Illustration of an interconnected network"><figcaption>Concept illustration</figcaption></figure>
+          <figure>
+            <a href="assets/research/mnist-pilot-inputs.png"><img src="assets/research/mnist-pilot-inputs.png" width="969" height="591" alt="Fifteen MNIST inputs arranged in rows of five handwritten ones, twos and threes"></a>
+            <figcaption>The 15 MNIST inputs used in the pilot. Each 28 × 28 pixel image is enlarged for inspection.</figcaption>
+          </figure>
         </section>
         <section class="detail-section"><p class="eyebrow">01 / Question</p><div><h2>What the project asks</h2><p>Can the dynamics of a nanowire network produce features that separate handwritten-digit classes? I compared patterns in the inputs with patterns in the simulated readouts to study the feature stage of physical reservoir computing.</p></div></section>
         <section class="detail-section"><p class="eyebrow">02 / Approach</p><div><h2>How it works</h2><p>I encoded each 28 × 28 MNIST image as 784 sequential input voltages. The simulator includes a PyTorch implementation and models a network with 16 electrodes. The analysis uses the voltage traces from four readout electrodes.</p><figure class="research-figure">
@@ -40,10 +43,6 @@
       <p>Before comparing digits, I varied the input voltage range and time step. I used a sine wave to inspect how the four readouts responded to a predictable input. At a fixed upper voltage, a higher baseline drives dark pixels more strongly while reducing bright–dark contrast. The notes treat a possible intermediate operating range as a hypothesis.</p>
       <h3 class="research-code-heading">From 15 to 80 images</h3>
       <p>The pilot used five examples each of digits 1, 2 and 3. The PCA view suggested a distinct region for digit 1 and overlap between digits 2 and 3. The expanded study used 20 examples each of digits 1, 2, 3 and 4, with a fixed setup and a reset of the simulated state between images.</p>
-      <figure class="research-figure">
-        <a href="assets/research/mnist-pilot-inputs.png"><img src="assets/research/mnist-pilot-inputs.png" width="969" height="591" loading="lazy" alt="Fifteen MNIST inputs arranged in rows of five handwritten ones, twos and threes"></a>
-        <figcaption>The 15 MNIST inputs used in the pilot. Each 28 × 28 pixel image is enlarged for inspection.</figcaption>
-      </figure>
       <h3 class="research-code-heading">Features and statistical analysis</h3>
       <p>For each of the four readouts, the L2 norm of the difference between the input and readout traces gives a Euclidean distance. I compared class means, variability, within-class spread and distances between class centroids. PCA provides a two-dimensional view. The silhouette scores come from the full standardised feature spaces.</p>
       <h3 class="research-code-heading">Code from the research notebook</h3>

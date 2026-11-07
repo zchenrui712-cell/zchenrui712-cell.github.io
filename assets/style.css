@@ -52,6 +52,7 @@ nav a:hover, nav a[aria-current] { text-decoration: underline; text-underline-of
 .card-overview:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 .card-art { position: relative; }
 .card-art img { width: 100%; border-radius: 9px 9px 0 0; }
+.card-art-samples img { aspect-ratio: 16 / 9; object-fit: contain; padding: 30px 10px 8px; background: #fff; }
 .card-index { position: absolute; top: 13px; left: 13px; border-radius: 4px; padding: 4px 7px; background: #fffefa; color: var(--accent); font: 650 .71rem/1.25 var(--mono); }
 .card-copy { display: flex; flex-direction: column; flex: 1; padding: 19px; }
 .card-copy h3 { font-size: clamp(1.5rem, 2.55vw, 2.03rem); letter-spacing: -.045em; margin-block: 8px 9px; }
