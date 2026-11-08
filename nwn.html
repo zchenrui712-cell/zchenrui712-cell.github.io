@@ -20,6 +20,7 @@
         <section class="detail-hero"><div><p class="eyebrow">01 / Research</p><h1>Neuromorphic Nanowire Networks</h1><p class="lead">A simulation study of how a nanowire network transforms MNIST handwritten-digit inputs.</p>
           <div class="meta"><span>University of Sydney SSP (Special Study Program)</span><span>Physical reservoir computing · MNIST</span></div><div class="intro-links">
           <a class="button primary" href="#results">View results <span aria-hidden="true">↓</span></a>
+          <a class="button secondary" href="#method-figures">View method figures <span aria-hidden="true">↓</span></a>
           <a class="button secondary" href="https://github.com/zchenrui712-cell/nwn-ssp/blob/main/docs/notebook-code.md">View notebook code <span aria-hidden="true">↗</span></a>
         </div></div>
           <figure>
@@ -39,10 +40,24 @@
           <figcaption>Conceptual workflow from my SSP research logbook, page 9.</figcaption>
         </figure>
       </details>
-      <h3 class="research-code-heading">Checking the simulator response</h3>
+      <h3 class="research-code-heading" id="method-figures">Checking the simulator response</h3>
       <p>Before comparing digits, I varied the input voltage range and time step. I used a sine wave to inspect how the four readouts responded to a predictable input. At a fixed upper voltage, a higher baseline drives dark pixels more strongly while reducing bright–dark contrast. The notes treat a possible intermediate operating range as a hypothesis.</p>
+      <figure class="research-figure">
+        <a href="assets/research/sine-input-and-readouts.png"><img src="assets/research/sine-input-and-readouts.png" width="576" height="453" loading="lazy" alt="Smooth sine-wave input in blue overlaid with four simulated readout voltage traces"></a>
+        <figcaption>Sine-wave input and four simulated readouts from an exploratory run. The horizontal axis shows simulation steps.</figcaption>
+      </figure>
       <h3 class="research-code-heading">From 15 to 80 images</h3>
       <p>The pilot used five examples each of digits 1, 2 and 3. The PCA view suggested a distinct region for digit 1 and overlap between digits 2 and 3. The expanded study used 20 examples each of digits 1, 2, 3 and 4, with a fixed setup and a reset of the simulated state between images.</p>
+      <div class="research-figures">
+        <figure class="research-figure">
+          <a href="assets/research/pilot-pca-pixels.png"><img src="assets/research/pilot-pca-pixels.png" width="565" height="453" loading="lazy" alt="Pilot PCA scatter plot of raw MNIST pixels, coloured by digit"></a>
+          <figcaption>Pilot PCA using the 784 pixel values per image.</figcaption>
+        </figure>
+        <figure class="research-figure">
+          <a href="assets/research/pilot-pca-readout.png"><img src="assets/research/pilot-pca-readout.png" width="587" height="453" loading="lazy" alt="Pilot PCA scatter plot of four readout features, with digits 2 and 3 overlapping"></a>
+          <figcaption>Pilot PCA using the four L2 readout features from the same 15 images. Each plot has its own axes.</figcaption>
+        </figure>
+      </div>
       <h3 class="research-code-heading">Features and statistical analysis</h3>
       <p>For each of the four readouts, the L2 norm of the difference between the input and readout traces gives a Euclidean distance. I compared class means, variability, within-class spread and distances between class centroids. PCA provides a two-dimensional view. The silhouette scores come from the full standardised feature spaces.</p>
       <h3 class="research-code-heading">Code from the research notebook</h3>
@@ -58,7 +73,7 @@ for i in range(4):
         <a class="button secondary" href="https://github.com/zchenrui712-cell/nwn-ssp/blob/main/docs/notebook-code.md" target="_blank" rel="noopener noreferrer">Notebook code and screenshot index <span aria-hidden="true">↗</span></a>
         <a class="button secondary" href="https://github.com/zchenrui712-cell/nwn-ssp/blob/main/analysis/demo.py" target="_blank" rel="noopener noreferrer">Runnable Python walkthrough <span aria-hidden="true">↗</span></a>
       </div></div></section>
-        <section class="detail-section"><p class="eyebrow">03 / Contribution</p><div><h2>My contribution</h2><p>I explored input settings, used controlled sine-wave inputs to inspect the four readouts, and analysed digit-class structure in the resulting features. I documented this progression in my logbook and presented the pilot-to-expanded comparison and its limits. Earlier topology experiments by a colleague provided context for this work.</p></div></section>
+        <section class="detail-section"><p class="eyebrow">03 / Contribution</p><div><h2>My contribution</h2><p>I undertook this first-year SSP project under the supervision of Professor Zdenka Kuncic and Dr Henry Westmacott. I explored input settings, used controlled sine-wave inputs to inspect the four readouts, and analysed digit-class structure in the resulting features. I documented this progression in my logbook and presented the pilot-to-expanded comparison and its limits. Earlier topology experiments by a colleague provided context for this work.</p></div></section>
         <section id="results" class="detail-section"><p class="eyebrow">04 / Interpretation</p><div><h2>What the project shows</h2><p>The pilot gave a higher silhouette score for readout features than for raw inputs. In the 80-image study, both showed weak separation and the readout representation scored lower. The pilot and expanded sets used different images and digit classes.</p>
         <figure class="research-figure">
           <a href="assets/research/silhouette-comparison.png"><img src="assets/research/silhouette-comparison.png" width="2100" height="1500" loading="lazy" alt="Silhouette scores of 0.0195 for raw MNIST and −0.0367 for the four nanowire-network L2 features"></a>
