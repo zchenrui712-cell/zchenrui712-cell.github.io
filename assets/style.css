@@ -47,6 +47,14 @@ nav a:hover, nav a[aria-current] { text-decoration: underline; text-underline-of
 .work { border-top: 1px solid var(--line); padding-block: 25px 64px; scroll-margin-top: 16px; }
 .section-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
 .section-top h2 { font-size: clamp(1.8rem, 3.3vw, 2.7rem); letter-spacing: -.035em; }
+.awards { border-top: 1px solid var(--line); padding-block: 25px 48px; scroll-margin-top: 16px; }
+.award-year { display: grid; grid-template-columns: minmax(90px, .22fr) minmax(0, 1fr); gap: 12px; border-bottom: 1px solid var(--line); padding-block: 13px; }
+.award-year h3 { color: var(--green); font: 650 .84rem/1.6 var(--mono); }
+.award-year ul { margin: 0; padding-inline-start: 19px; }
+.award-year li + li { margin-top: 4px; }
+.award-year p { color: var(--muted); margin-bottom: 4px; }
+.contact-bar { flex-wrap: wrap; gap: 4px 16px; padding-block: 12px; }
+.contact-bar a { color: var(--green); text-underline-offset: 3px; }
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .nwn { --accent: #225641; }
 .robot { --accent: #784020; }
@@ -94,6 +102,10 @@ nav a:hover, nav a[aria-current] { text-decoration: underline; text-underline-of
 .logbook-preview img { width: min(100%, 440px); }
 .research-code-heading { margin: 23px 0 8px; font-size: 1.35rem; }
 .research-code { overflow-x: auto; padding: 15px; border: 1px solid var(--line); border-radius: 7px; background: #edf1eb; font: .88rem/1.6 var(--mono); }
+.readout-demo { margin-block: 12px; padding: 14px; border: 1px solid var(--line); border-radius: 7px; background: #fffefa; }
+.readout-demo label { font-weight: 650; }
+.readout-demo select { min-height: 40px; margin-inline-start: 8px; padding: 4px 8px; font: inherit; }
+.readout-demo output { display: block; margin-top: 8px; font-family: var(--mono); overflow-wrap: anywhere; }
 .demo-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-block: 14px; }
 .demo-actions button { cursor: pointer; font-family: inherit; }
 .demo-upload label { display: block; }
@@ -139,6 +151,7 @@ nav a:hover, nav a[aria-current] { text-decoration: underline; text-underline-of
   .detail-hero { gap: 23px; padding-block: 23px 28px; }
   .detail-section { gap: 8px; padding-block: 20px; }
   .detail-section > .eyebrow { margin-top: 0; }
+  .award-year { grid-template-columns: 1fr; gap: 4px; }
   .cv-row { flex-direction: column; gap: 4px; padding-top: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
